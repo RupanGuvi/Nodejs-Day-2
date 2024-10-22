@@ -18,6 +18,10 @@ app.use(
   })
 );
 
+//default middleware for req.body
+app.use(express.json())
+
+
 //Default route for cannot get
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to Our API");

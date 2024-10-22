@@ -28,3 +28,19 @@ export const getProductById = (req, res) => {
     .status(200)
     .json({ message: "Product Retrieved Successfully", data: productDetail });
 };
+
+// post method
+
+export const createProduct = (req, res) => {
+  const { name, price } = req.body;
+  const newProduct = {
+    id: products.length + 1,
+    name: name,
+    price: price,
+  };
+
+  products.push(newProduct);
+  res
+    .status(200)
+    .json({ message: "Product Added Successfully", data: newProduct });
+};
