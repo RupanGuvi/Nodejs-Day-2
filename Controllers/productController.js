@@ -44,3 +44,31 @@ export const createProduct = (req, res) => {
     .status(200)
     .json({ message: "Product Added Successfully", data: newProduct });
 };
+
+//Put / update method
+
+export const updateProduct = (req, res) => {
+  const productId = req.params.id;
+  const { name, price } = req.body;
+  const index = products.findIndex((ele) => ele.id == productId);
+  if (index === -1) {
+    return res.status(404).json({ message: "Product Not Found" });
+  }
+  products[index].name = name;
+  products[index].price = price;
+  res
+    .status(200)
+    .json({ message: "Product Updated Successfully", data: products[index] });
+};
+
+//delete method
+
+export const deleteProduct = (req, res) => {
+  const productId = req.params.id;
+  const index = products.findIndex((ele) => ele.id == productId);
+  if (index === -1) {
+    return res.status(404).json({ message: "Product Not Found" });
+  }
+  products.splice(index, 1);
+  res.status(200).json({ message: "Product deleted successfully" });
+};
